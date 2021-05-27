@@ -1,0 +1,138 @@
+<div class="card mt-3">
+  <div class="card-header">
+    <div class="float-start">
+      <h4>Novo cliente</h4>
+    </div>
+    <div class="float-end">
+      <button type="button" class="btn btn-secondary" [routerLink]="['']">
+        Cancelar
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+      <label>
+        Nome
+        <input type="text" class="form-control" formControlName="name" />
+          <div *ngIf="clientForm.get('name')?.errors?.required && (clientForm.get('name')?.dirty || clientForm.get('name')?.touched)" class="alert alert-danger">
+            O nome é obrigatório
+          </div>
+      </label>
+
+      <label>
+        CPF
+        <input
+          type="text"
+          class="form-control"
+          formControlName="cpf"
+          mask="000.000.000-00"
+        />
+        <div *ngIf="clientForm.get('cpf')?.errors?.required && (clientForm.get('cpf')?.dirty || clientForm.get('cpf')?.touched)" class="alert alert-danger">
+          O CPF é obrigatório
+        </div>
+      </label>
+
+      <label>
+        E-mail
+        <input type="email" class="form-control" formControlName="email" />
+      </label>
+
+      <label>
+        Telefone
+        <input
+          type="text"
+          class="form-control"
+          formControlName="tel"
+          mask="(00) 0000-0000||(00) 00000-0000"
+        />
+      </label>
+      <br />
+      <div formGroupName="address">
+        <h5>Endereço</h5>
+
+        <label>
+          Logradouro
+          <input type="text" class="form-control" formControlName="street" />
+          <div *ngIf="clientForm.get('street')?.errors?.required && (clientForm.get('street')?.dirty || clientForm.get('street')?.touched)" class="alert alert-danger">
+            O logradouro (rua/av) é obrigatório
+          </div>
+        </label>
+
+        <label>
+          Número
+          <input type="number" class="form-control" formControlName="number" />
+          <div *ngIf="clientForm.get('number')?.errors?.required && (clientForm.get('number')?.dirty || clientForm.get('number')?.touched)" class="alert alert-danger">
+            O número é obrigatório
+          </div>
+        </label>
+
+        <label>
+          Complemento
+          <input
+            type="text"
+            class="form-control"
+            formControlName="addressDetails"
+          />
+        </label>
+
+        <label>
+          Bairro
+          <input
+            type="text"
+            class="form-control"
+            formControlName="neighbourhood"
+          />
+          <div *ngIf="clientForm.get('neighbourhood')?.errors?.required && (clientForm.get('neighbourhood')?.dirty || clientForm.get('neighbourhood')?.touched)" class="alert alert-danger">
+            O bairro é obrigatório
+          </div>
+        </label>
+
+        <label>
+          Cidade
+          <input type="text" class="form-control" formControlName="city" />
+          <div *ngIf="clientForm.get('city')?.errors?.required && (clientForm.get('city')?.dirty || clientForm.get('city')?.touched)" class="alert alert-danger">
+            A cidade é um campo obrigatório
+          </div>
+        </label>
+
+        <label>
+          Estado
+          <input type="text" class="form-control" formControlName="state" />
+          <div *ngIf="clientForm.get('state')?.errors?.required && (clientForm.get('state')?.dirty || clientForm.get('state')?.touched)" class="alert alert-danger">
+            O estado é obrigatório
+          </div>
+        </label>
+
+        <label>
+          CEP
+          <input
+            type="number"
+            class="form-control"
+            formControlName="postalCode"
+            mask="00000-000"
+          />
+          <div *ngIf="clientForm.get('cep')?.errors?.required && (clientForm.get('cep')?.dirty || clientForm.get('cep')?.touched)" class="alert alert-danger">
+            O CEP é obrigatório
+          </div>
+        </label>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!clientForm.valid"
+      >
+        Salvar
+      </button>
+    </form>
+
+    <div class="row" *ngIf="success">
+      <div class="col-xs-12">
+        <p class="alert alert-success">
+            <strong>Cliente cadastrado com sucesso</strong>
+
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

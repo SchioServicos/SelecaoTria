@@ -1,0 +1,30 @@
+<div class="card mt-3">
+    <div class="card-header">
+      <div class="float-start">
+        <h4>Clientes</h4>
+      </div>
+      <div class="float-end">
+        <button type="button" class="btn btn-primary" [routerLink]="['register-client']">Novo cliente</button>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>CPF</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cliente of clients">
+            <td>{{ cliente.cpf | mask: 'CPF_CNPJ' }}</td>
+            <td>{{ cliente.nome }}</td>
+            <td>{{ cliente.email }}</td>
+            <td>{{ cliente.telefone  | mask: '(00) 0-0000-0000' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
